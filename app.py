@@ -231,5 +231,32 @@ def getIT():
             print('error')
             return jsonify({'data': 'directions_data'})
   
+
+@app.route('/api/fetchPolylines', methods=['GET']) 
+def poly():   
+    apiKey = 'AIzaSyBeG5g3Ps44SleGRirPm4IcnC9BvwbLqDI'
+    if request.method == 'GET':
+        current_lat = request.args.get('cLAT')  # Added for optional handling
+        current_long = request.args.get('cLONG')
+        dest_lat = request.args.get('dLAT')  # Added for optional handling
+        dest_long = request.args.get('dLONG') 
+
+
+        apiurl = f'https://maps.googleapis.com/maps/api/directions/json?key={apiKey}&units=metric&origin={current_lat},{current_long}&destination={dest_lat},{dest_long}&mode=driving'
+                   # Send the HTTP request to the Directions API
+        response = requests.get(apiurl)
+        print(f'URL is this {apiurl} ')
+
+        if response.status_code == 200:
+                     # Parse the JSON response
+            polyLine_data = response.json()                
+            
+            print(polyLine_data)
+            return jsonify(polyLine_data)
+
+                   
+        else:
+            print('error')
+            return jsonify({'data': 'ERROR'})
     
 
