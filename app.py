@@ -205,7 +205,7 @@ def extract_parameters():
 # fetching the distance 
 @app.route('/api/distanceandtime', methods=['GET']) 
 def getIT():
-    apiKey = 'AIzaSyBeG5g3Ps44SleGRirPm4IcnC9BvwbLqDI'
+    apiKey = 'AIzaSyCtDSgmH1koRCq9tU3zqf4T5tzsISG3nNY'
     if request.method == 'GET':
        
         current_lat = request.args.get('cLAT')  # Added for optional handling
