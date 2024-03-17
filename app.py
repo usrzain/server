@@ -100,6 +100,11 @@ def find_best_charging_station(charging_stations, user_location, ev_range):
         return None
 
 # Algo
+    
+@app.route('/', methods=['GET'])
+def check():
+    return jsonify('Yes you have the Server running '), 200
+
 
 @app.route('/api/extract_parameters', methods=['GET'])
 def extract_parameters():
