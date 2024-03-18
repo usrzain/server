@@ -46,7 +46,27 @@ currLAT = 0.0
 currLONG = 0.0
 chargStation = 0
     
+# find the Vehicle Range 
 
+def vehRange(vehBrand, vehModel):
+    electricVehicles = [
+        {'brand':'BMW', 'model':'2019', 'Trange':50},
+        {'brand':'Honda', 'model':'2018', 'Trange':40},
+        {'brand':'Tesla', 'model':'2020', 'Trange':60},
+
+    ]
+
+    # Loop through the electricVehicles list
+    for vehicle in electricVehicles:
+    # Access the 'brand' key within each dictionary
+        brand = vehicle['brand']
+        if (brand == vehBrand):
+            range = vehicle['Trange']
+            return range
+
+          
+
+# find the Vehicle Range
 
 
 
@@ -113,6 +133,10 @@ def extract_parameters():
         current_soc = request.args.get('currentSOC')
         current_lat = request.args.get('currentLAT')  # Added for optional handling
         current_long = request.args.get('currentLONG')  # Added for optional handling
+        vehBrand = request.args.get('vehBrand')
+        vehModel = request.args.get('vehModel')
+
+        totalRange = vehRange(vehBrand,vehModel)
 
         currSOC = float(current_soc)
         currLAT = current_lat
@@ -175,9 +199,10 @@ def extract_parameters():
         # print(charging_stations)  
 
         user_location = (currLAT, currLONG)
-        max_Range = 50
-        calculate_Range= currSOC/100*max_Range
-        print(f'Max Range is {max_Range}, and Calculated Range is {calculate_Range}')
+        
+        
+        calculate_Range= currSOC/100*totalRange
+        print(f'Max Range is {totalRange}, and Calculated Range is {calculate_Range}')
         # ev_range = float(input("Enter your EV's range in kilometers: "))
 
         best_station = find_best_charging_station(charging_stations, user_location, calculate_Range)
