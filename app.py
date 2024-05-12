@@ -51,7 +51,7 @@ chargStation = 0
 def vehRange(vehBrand, vehModel):
     electricVehicles = [
         {'brand':'BMW', 'model':'2019', 'Trange':50},
-        {'brand':'Honda', 'model':'2018', 'Trange':40},
+        {'brand':'Honda', 'model':'2018', 'Trange':35},
         {'brand':'Tesla', 'model':'2020', 'Trange':60},
 
     ]
